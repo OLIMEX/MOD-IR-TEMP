@@ -18,24 +18,24 @@
 //  this makes it perfect for non contact measurements of PCB soldering, body temperature etc applications
 
 #include <Wire.h>
-#include <Adafruit_MiniMLX90614.h>
+#include "Adafruit_MLX90614.h"
 
 
-Adafruit_MiniMLX90614 modIrTemp = Adafruit_MiniMLX90614();
+Adafruit_MLX90614 modIrTemp = Adafruit_MLX90614();
 
 void setup() {
   pinMode(8,OUTPUT);        //the following two lines enable power supply 3.3V on UEXT connector
   digitalWrite(8,LOW);      //you do not need them if you use wire jumpers
-  mlx.begin();  
+  modIrTemp.begin();  
   Serial.begin(115200);
 }
 
 void loop() {
 
-  Serial.print("Ambient = "); Serial.print(mlx.readAmbientTempC()); 
-  Serial.print("*C\tObject = "); Serial.print(mlx.readObjectTempC());
+  Serial.print("Ambient = "); Serial.print(modIrTemp.readAmbientTempC()); 
+  Serial.print("*C\tObject = "); Serial.println(modIrTemp.readObjectTempC());
    
-  delay(500); // can adjust this for faster/slower updates
+  delay(1000); // can adjust this for faster/slower updates
 }
 
 
